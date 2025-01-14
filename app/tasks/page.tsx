@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -10,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import TopNavbar from "./components/topNavbar";
-
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 // Mock data
 const TASKS = [
   {
@@ -49,8 +49,20 @@ const TASKS = [
   },
 ];
 
-export default function Home() {
+export default function Tasks() {
   const [hours, setHours] = useState("");
+  const { status } = useSession();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      const requestedPath = pathname === "/signin" ? "/tasks" : pathname;
+      router.push(requestedPath);
+    } else {
+      router.push("/signin");
+    }
+  }, [status, pathname, router]);
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", {
@@ -61,7 +73,6 @@ export default function Home() {
 
   return (
     <>
-      <TopNavbar />
       <div className="w-full flex flex-col items-center">
         <div className="header-height"></div>
         <div className="container flex flex-col items-start justify-center px-4 text-black w-full">
