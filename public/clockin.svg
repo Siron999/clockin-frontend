@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg 
+  xmlns="http://www.w3.org/2000/svg"
+  width="32"
+  height="32" 
+  viewBox="0 0 65 30"
+  role="img"
+>
+  <!-- Loading bar 1 -->
+  <path 
+    d="M10 5c0-2.76 2.24-5 5-5s5 2.24 5 5v15c0 2.76-2.24 5-5 5s-5-2.24-5-5V5zm10 0v15c0 1.65-1.35 3-3 3s-3-1.35-3-3V5c0-1.65 1.35-3 3-3s3 1.35 3 3z"
+    fill="#A88BFA"
+  >
+    <animate 
+      attributeName="opacity"
+      values="1;0.3;1"
+      dur="1s"
+      repeatCount="indefinite"
+      begin="0s"
+    />
+  </path>
+
+  <!-- Loading bar 2 -->
+  <path
+    d="M30 5c0-2.76 2.24-5 5-5s5 2.24 5 5v15c0 2.76-2.24 5-5 5s-5-2.24-5-5V5zm10 0v15c0 1.65-1.35 3-3 3s-3-1.35-3-3V5c0-1.65 1.35-3 3-3s3 1.35 3 3z"
+    fill="#A88BFA"
+  >
+    <animate 
+      attributeName="opacity"
+      values="1;0.3;1"
+      dur="1s"
+      repeatCount="indefinite"
+      begin="0.2s"
+    />
+  </path>
+
+  <!-- Loading bar 3 -->
+  <path
+    d="M50 5c0-2.76 2.24-5 5-5s5 2.24 5 5v15c0 2.76-2.24 5-5 5s-5-2.24-5-5V5zm10 0v15c0 1.65-1.35 3-3 3s-3-1.35-3-3V5c0-1.65 1.35-3 3-3s3 1.35 3 3z"
+    fill="#A88BFA"
+  >
+    <animate 
+      attributeName="opacity"
+      values="1;0.3;1"
+      dur="1s"
+      repeatCount="indefinite"
+      begin="0.4s"
+    />
+  </path>
+</svg>

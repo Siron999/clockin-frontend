@@ -13,6 +13,8 @@ const setup = async () => {
 
 setup();
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+};
 
 export default nextConfig;
