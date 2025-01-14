@@ -27,14 +27,14 @@ export default function TopNavbar() {
 
   return (
     <header className={`header header-height ${scrolled ? "scrolled" : ""}`}>
-      <div className="container flex flex-row items-center justify-between text-black h-[10vh]">
+      <div className="flex flex-row items-center justify-between text-black h-[10vh] w-full px-8">
         <div className="flex flex-row">
           <Link href="/">
             {" "}
             <DonezoLogo color="white" />
           </Link>
         </div>
-        <div className="flex flex-row items-center space-x-4 text-white font-medium font-sizesmall">
+        <div className="flex flex-row items-center space-x-4 text-white font-medium text-lg">
           {session && session.user?.name && pathname !== "/" ? (
             `Welcome ${session.user?.name}`
           ) : (

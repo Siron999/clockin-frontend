@@ -32,7 +32,7 @@ export function AppSidebar() {
               }`}
             >
               <CalendarDays size={14} />
-              <span className="font-semibold text-xs">Tasks</span>
+              <span className="font-semibold text-sm">Tasks</span>
             </div>
           </Link>
           <Link href="/previous">
@@ -42,7 +42,7 @@ export function AppSidebar() {
               }`}
             >
               <History size={14} />
-              <span className="font-semibold text-xs">Previous Logs</span>
+              <span className="font-semibold text-sm">Previous Logs</span>
             </div>
           </Link>
         </SidebarGroup>
@@ -53,7 +53,7 @@ export function AppSidebar() {
           className="flex items-center gap-2 px-3 py-2 text-white rounded-lg cursor-pointer hover:bg-white/10"
         >
           <LogOut size={14} />
-          <span className="font-semibold text-xs">Logout</span>
+          <span className="font-semibold text-sm">Logout</span>
         </div>
       </SidebarFooter>
     </Sidebar>
