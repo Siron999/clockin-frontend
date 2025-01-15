@@ -54,13 +54,13 @@ export const authOptions: NextAuthConfig = {
             return false;
           }
 
-          if (!data.token || !data.user?._id) {
-            console.error("Invalid response from backend:", data);
+          if (!data.token || !data.user?.id) {
+            console.error("Invalid response from backend. Empty:", data);
             return false;
           }
 
           account.backendToken = data.token;
-          account.userId = data.user._id;
+          account.userId = data.user.id;
           return true;
         } catch (error) {
           console.error("Backend authentication failed:", error);

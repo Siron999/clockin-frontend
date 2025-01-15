@@ -6,7 +6,7 @@ export interface ApiResponse<T = unknown> {
 }
 
 export interface User {
-  _id: string;
+  id: Number;
   email: string;
   sub: string;
   name?: string;
