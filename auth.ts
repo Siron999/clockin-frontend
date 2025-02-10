@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { NextAuthConfig } from "next-auth";
 import { ApiResponse, LoginResponse } from "./types";
+import { cookies } from "next/headers";
 
 export const authOptions: NextAuthConfig = {
   providers: [GoogleProvider],
@@ -11,8 +12,17 @@ export const authOptions: NextAuthConfig = {
     updateAge: 1 * 24 * 60 * 60, // 1 days
   },
   secret: `${process.env.NEXTAUTH_SECRET}`,
+  events: {
+    async signOut() {
+      //clear the backend token cookie
+      const cookieStore = await cookies();
+      cookieStore.delete("backendToken");
+      return Promise.resolve();
+    },
+  },
   callbacks: {
     async signIn({
+      user,
       account,
       profile,
     }: {
@@ -61,6 +71,18 @@ export const authOptions: NextAuthConfig = {
 
           account.backendToken = data.token;
           account.userId = data.user.id;
+
+          // Set custom cookies in the response
+          const cookieStore = await cookies();
+
+          // Set a secure HTTP-only cookie
+          cookieStore.set("backendToken", data.token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+            maxAge: 30 * 24 * 60 * 60, // 30 days
+            path: "/",
+          });
           return true;
         } catch (error) {
           console.error("Backend authentication failed:", error);
