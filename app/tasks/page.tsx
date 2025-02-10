@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import customAxios from "../config/api/axiosInterceptor";
 // Mock data
 const TASKS = [
   {
@@ -70,6 +71,20 @@ export default function Tasks() {
       month: "short",
     });
   };
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await customAxios.get("/api/v1/tasks");
+        const data = await response.data;
+        console.log(data);
+      } catch (error) {
+        console.error("Failed to fetch tasks", error);
+      }
+    };
+
+    fetchTasks().then(() => console.log("Fetched tasks successfully"));
+  }, []);
 
   return (
     <>
