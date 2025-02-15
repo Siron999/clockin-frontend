@@ -3,6 +3,8 @@ import { getTasks } from "@/lib/server-api";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import TaskList from "../components/TaskList";
 
+export const dynamic = "force-dynamic";
+
 export default async function Tasks() {
   const queryClient = getQueryClient();
 
