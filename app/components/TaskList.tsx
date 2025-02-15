@@ -16,6 +16,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 export default function TaskList() {
+  const [hours, setHours] = useState(""); // Move useState to the top
+
   const {
     data: tasks,
     isLoading,
@@ -25,10 +27,7 @@ export default function TaskList() {
     queryFn: getTasksClientSide,
   });
 
-  if (isLoading) return <div>Loading tasks...</div>;
-  if (error) return <div>Error loading tasks: {String(error)}</div>;
-  const [hours, setHours] = useState("");
-
+  // Helper functions
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleDateString("en-US", {
       day: "numeric",
@@ -42,6 +41,9 @@ export default function TaskList() {
     const diff = (end.getTime() - start.getTime()) / (1000 * 60 * 60);
     return diff;
   };
+
+  if (isLoading) return <div>Loading tasks...</div>;
+  if (error) return <div>Error loading tasks: {String(error)}</div>;
 
   return (
     <div className="flex flex-col w-full space-y-4">
