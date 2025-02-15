@@ -1,10 +1,10 @@
 import { ApiResponse, Task } from "@/types";
-import axios from "axios";
+import clientAxios from "../app/config/api/axiosClientInterceptor";
 import apiUrl from "./api";
 
 export async function getTasksClientSide(): Promise<ApiResponse<Task[]>> {
   try {
-    const response = await axios.get(apiUrl.taskUrl);
+    const response = await clientAxios.get(apiUrl.taskUrl);
     return response.data;
   } catch (error) {
     console.error("Error getting tasks", error);
