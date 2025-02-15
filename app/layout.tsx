@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import ReactQueryProvider from "./providers/react-query-provider";
 
 const fontSans = Inter_Tight({
   variable: "--font-inter-tight",
@@ -31,7 +32,9 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} ${fontMono.variable} antialiased dark`}
       >
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </SessionProvider>
       </body>
     </html>
   );

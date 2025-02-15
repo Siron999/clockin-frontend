@@ -4,6 +4,7 @@ import { NextAuthConfig } from "next-auth";
 import { ApiResponse, LoginResponse } from "./types";
 import { cookies } from "next/headers";
 import axios from "axios";
+import api from "./lib/api";
 
 export const authOptions: NextAuthConfig = {
   providers: [GoogleProvider],
@@ -35,10 +36,10 @@ export const authOptions: NextAuthConfig = {
         try {
           console.log(
             "Signing in with Google account:",
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/google-signin`
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}${api.loginUrl}`
           );
           const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/google-signin`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}${api.loginUrl}`,
             {
               googleToken: account.id_token,
               email: profile?.email,
