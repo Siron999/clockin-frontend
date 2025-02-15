@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 import type { NextRequest } from "next/server";
+import { auth } from "./auth";
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -17,10 +17,10 @@ export async function middleware(req: NextRequest) {
 }
 
 async function handleTasksMiddleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const session = await auth();
 
-  if (!token) {
-    console.log("No token found, redirecting to signin page");
+  if (!session) {
+    console.log("No session found, redirecting to signin page");
     return NextResponse.redirect(new URL("/signin", req.url));
   }
 
@@ -28,10 +28,10 @@ async function handleTasksMiddleware(req: NextRequest) {
 }
 
 async function handleSigninMiddleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const session = await auth();
 
-  if (token) {
-    console.log("Token found, redirecting to tasks page");
+  if (session) {
+    console.log("Session found, redirecting to tasks page");
     return NextResponse.redirect(new URL("/tasks", req.url));
   }
 
